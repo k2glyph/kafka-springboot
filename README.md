@@ -15,9 +15,9 @@ __Kafka commands:__
 Starting zookeeper: ./bin/zookeeper-server-start.sh config/zookeeper.properties  
 Starting kafka cluster: ./bin/kafka-server-start.sh config/server.properties  
 Creating kafka topic: ./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic emailTopic  
-Describe kafka topic: ./bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic topic1  
-Starting kafka producer: ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic topic1  
-Starting kafka consumer: ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic topic1 --from-beginning  
+Describe kafka topic: ./bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic emailTopic  
+Starting kafka producer: ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic emailTopic  
+Starting kafka consumer: ./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic emailTopic --from-beginning  
 ````
 and then Run the application
 
