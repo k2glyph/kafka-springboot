@@ -1,18 +1,22 @@
 package com.example.kafka;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class IntegrationAPI {
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private KafkaMailProducer kafkaMailProducer;
 
-    @GetMapping("/kafka/{topic}/{message}")
-    public void sendMessage(@PathVariable String topic, @PathVariable String message) {
-        kafkaProducer.produce().accept(topic, message);
+    @PostMapping("/sendEmail")
+    public ResponseEntity sendMessage(@RequestBody Request request) {
+        kafkaMailProducer.produceMail().accept(request);
+        return new ResponseEntity<>("Message sent to " + request.toEmail, HttpStatus.OK);
     }
+
 }
